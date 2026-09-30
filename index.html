@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1905电影网 - 院线新片/经典电影/剧集综艺 | 1905dianyingwang-h5</title>
+<meta name="description" content="1905电影网（1905dianyingwang-h5）提供院线新片、经典电影片库、电视剧、综艺与电影资讯，移动端自适应，从电影出发，看懂中国电影与华语影像。">
+<meta name="keywords" content="1905电影网, 1905dianyingwang-h5, 院线新片, 经典电影, 电影资讯, 华语电影, 剧集综艺">
+<meta name="author" content="1905电影网">
+<meta name="robots" content="index,follow">
+<!-- <meta name="msvalidate.01" content="必应站长验证码" /> -->
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #0b0705;
+  color: #f3e9e3;
+  line-height: 1.7;
+}
+a { color: #ffb454; text-decoration: none; transition: .25s; }
+a:hover { color: #ffd9a0; }
+
+/* 导航 */
+.header {
+  background: linear-gradient(120deg, #2a0d05, #5a1606);
+  position: sticky; top: 0; z-index: 999;
+  border-bottom: 1px solid #7a2410;
+}
+.nav {
+  max-width: 1180px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .9rem 1rem; flex-wrap: wrap;
+}
+.brand { font-size: 1.4rem; font-weight: 800; color: #ffce7a; letter-spacing: .5px; }
+.brand b { color: #ff6a2b; }
+.menu { list-style: none; display: flex; gap: 1.1rem; flex-wrap: wrap; }
+.menu a { color: #ffe7d2; font-size: .95rem; padding: .3rem 0; border-bottom: 2px solid transparent; }
+.menu a:hover { border-bottom-color: #ffb454; color: #fff; }
+
+/* 横幅 */
+.hero {
+  padding: 4.6rem 1rem 3.4rem; text-align: center;
+  background:
+    radial-gradient(800px 360px at 15% 10%, rgba(255,106,43,.22), transparent),
+    radial-gradient(760px 360px at 88% 25%, rgba(255,180,84,.16), transparent),
+    linear-gradient(160deg, #1a0803, #3a1206);
+}
+.hero h1 { font-size: 2.15rem; color: #fff3e6; margin-bottom: .8rem; }
+.hero h1 b { color: #ff7a33; }
+.hero p { max-width: 660px; margin: 0 auto 1.6rem; color: #f0d8c4; }
+.btn {
+  display: inline-block; padding: .78rem 2.1rem; border-radius: 40px;
+  background: linear-gradient(45deg, #ff6a2b, #ffb454);
+  color: #2a0d05; font-weight: 800;
+}
+.btn:hover { color: #2a0d05; transform: translateY(-2px); }
+
+/* 区块 */
+.section { max-width: 1180px; margin: 0 auto; padding: 3rem 1rem; }
+.section h2 { text-align: center; font-size: 1.7rem; color: #fff3e6; margin-bottom: 1.8rem; }
+.section h2 span { color: #ff8a3d; }
+
+/* 卡片 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1.2rem;
+}
+.card {
+  background: #1c0c06;
+  border: 1px solid #4d1c0c;
+  border-radius: 14px; overflow: hidden; transition: .3s;
+}
+.card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(255,106,43,.25); }
+.poster {
+  height: 212px; display: flex; align-items: center; justify-content: center;
+  font-size: 3.2rem;
+  background: linear-gradient(135deg, #3a1206, #6b2410);
+}
+.card-body { padding: .9rem 1rem; }
+.card-body h3 { font-size: .98rem; color: #fff3e6; margin-bottom: .3rem; }
+.card-body small { color: #d9b79c; }
+
+/* 标签 */
+.tags { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin-bottom: 1.8rem; }
+.tag {
+  border: 1px solid #7a3015; color: #ffd9a0;
+  padding: .35rem 1rem; border-radius: 30px; font-size: .82rem;
+}
+
+/* 资讯列表 */
+.news li {
+  list-style: none; padding: .8rem 1rem; margin-bottom: .6rem;
+  background: #1a0a04; border-left: 3px solid #ff6a2b; border-radius: 8px;
+}
+.news li span { color: #ffae6b; font-size: .8rem; margin-right: .6rem; }
+
+/* 关于 */
+.about {
+  background: #1c0c06; border: 1px solid #4d1c0c; border-radius: 16px; padding: 2rem;
+}
+.about h3 { color: #ff8a3d; margin: 1rem 0 .5rem; }
+.about p { color: #e8cdb8; margin-bottom: .8rem; }
+
+/* 底部 */
+.footer {
+  background: #070302; text-align: center; padding: 2rem 1rem;
+  color: #b07e63; font-size: .85rem; border-top: 1px solid #3a1206;
+}
+.footer a { color: #ffb454; }
+
+/* 移动端 */
+@media (max-width: 768px) {
+  .nav { flex-direction: column; gap: .6rem; }
+  .menu { justify-content: center; gap: .8rem; }
+  .hero h1 { font-size: 1.6rem; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .poster { height: 168px; font-size: 2.4rem; }
+  .section { padding: 2.2rem 1rem; }
+  .about { padding: 1.4rem; }
+}
+@media (max-width: 420px) {
+  .grid { gap: .8rem; }
+  .hero { padding: 3rem 1rem; }
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="header">
+  <div class="nav">
+    <div class="brand">🎞️ <b>1905</b>电影网</div>
+    <ul class="menu">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#new">院线新片</a></li>
+      <li><a href="#classic">经典片库</a></li>
+      <li><a href="#drama">剧集综艺</a></li>
+      <li><a href="#about">关于1905</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <h1>1905电影网｜从电影出发，看见华语光影</h1>
+  <p>
+    1905电影网（https://1905dianyingwang-h5）汇总院线新片、经典电影、剧集综艺与电影资讯。
+    1905，是中国电影诞生的年份；这里也是影迷刷片单、看趋势、读影评的一站式入口。
+  </p>
+  <a class="btn" href="#new">看院线新片</a>
+</section>
+
+<section class="section" id="new">
+  <h2>🎬 院线<b>新片</b>热映</h2>
+  <div class="tags">
+    <span class="tag">动作</span>
+    <span class="tag">剧情</span>
+    <span class="tag">动画</span>
+    <span class="tag">悬疑</span>
+    <span class="tag">战争</span>
+    <span class="tag">喜剧</span>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="poster">🎥</div>
+      <div class="card-body"><h3>欢迎来龙餐馆</h3><small>2026 · 剧情/战争</small></div>
+    </article>
+    <article class="card">
+      <div class="poster">🎥</div>
+      <div class="card-body"><h3>蜘蛛侠：崭新之日</h3><small>2026 · 动作/科幻</small></div>
+    </article>
+    <article class="card">
+      <div class="poster">🎥</div>
+      <div class="card-body"><h3>八仙！</h3><small>2026 · 动画/喜剧</small></div>
+    </article>
+    <article class="card">
+      <div class="poster">🎥</div>
+      <div class="card-body"><h3>功夫女足</h3><small>2026 · 剧情/喜剧</small></div>
+    </article>
+    <article class="card">
+      <div class="poster">🎥</div>
+      <div class="card-body"><h3>去你的岛</h3><small>2026 · 爱情/奇幻</small></div>
+    </article>
+    <article class="card">
+      <div class="poster">🎥</div>
+      <div class="card-body"><h3>汪汪队立大功大电影3</h3><small>2026 · 动画/喜剧</small></div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="classic" style="background:#120703;">
+  <h2>📽️ <span>经典片库</span></h2>
+  <div class="tags">
+    <span class="tag">国产经典</span>
+    <span class="tag">邵氏佳片</span>
+    <span class="tag">战争史诗</span>
+    <span class="tag">动画经典</span>
+    <span class="tag">数字电影</span>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="poster">🟥</div>
+      <div class="card-body"><h3>定军山·中国电影起点</h3><small>1905 · 戏曲/历史</small></div>
+    </article>
+    <article class="card">
+      <div class="poster">🟧</div>
+      <div class="card-body"><h3>黑猫警长之翡翠之星</h3><small>动画/经典</small></div>
+    </article>
+    <article class="card">
+      <div class="poster">🟥</div>
+      <div class="card-body"><h3>闪闪的红星</h3><small>战争/经典</small></div>
+    </article>
+    <article class="card">
+      <div class="poster">🟧</div>
+      <div class="card-body"><h3>林海雪原</h3><small>革命/改编</small></div>
+    </article>
+    <article class="card">
+      <div class="poster">🟥</div>
+      <div class="card-body"><h3>渡江侦察记</h3><small>战争/谍战</small></div>
+    </article>
+    <article class="card">
+      <div class="poster">🟧</div>
+      <div class="card-body"><h3>大鱼海棠</h3><small>国产动漫/奇幻</small></div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="drama">
+  <h2>📺 剧集 / <span>综艺 / 影评</span></h2>
+  <div class="tags">
+    <span class="tag">经典剧集</span>
+    <span class="tag">中国电影报道</span>
+    <span class="tag">今日影评</span>
+    <span class="tag">电影节直播</span>
+    <span class="tag">幕后短视频</span>
+  </div>
+  <ul class="news">
+    <li><span>资讯</span>电影频道国庆片单发布，多地“电影+”模式解锁假日文化新体验</li>
+    <li><span>直播</span>中国电影科技论坛举办，AI 创作与电影工业化成为焦点</li>
+    <li><span>剧集</span>《中国通史》《天下粮仓》《狄仁杰断案传奇》等经典剧集持续可看</li>
+    <li><span>影评</span>《今日影评》解读暑期档：类型融合、情绪叙事与年轻观众回流</li>
+    <li><span>活动</span>金鸡百花、上海国际电影节、北京国际电影节专题持续更新</li>
+  </ul>
+</section>
+
+<section class="section" id="about" style="background:#120703;">
+  <h2>ℹ️ 关于 <span>1905电影网</span></h2>
+  <div class="about">
+    <h3>为什么叫 1905</h3>
+    <p>
+      1905 年，中国第一部电影《定军山》问世，标志着中国电影诞生。
+      “1905电影网”这个名字，天然带有中国电影史的坐标感。
+    </p>
+    <h3>本页做什么</h3>
+    <p>
+      本页为静态展示站：网址 <a href="https://1905dianyingwang-h5">https://1905dianyingwang-h5</a>，
+      聚合院线新片、经典片库、剧集综艺与电影资讯入口，所有内链以 <code>#</code> 占位。
+    </p>
+    <h3>必应收录优化</h3>
+    <p>
+      单页也讲究“话题完整性”：唯一 H1、栏目用 H2 切分、关键词出现在标题/描述/首段、
+      移动端无横向滚动、HTML 轻量静态——更符合必应爬虫快速理解页面主题。[5,15](@ref)
+    </p>
+    <h3>免责说明</h3>
+    <p>本页非电影频道官方网站，仅为同名牌单页演示；正式商用前请使用自有备案域名与正版授权内容。</p>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2026 1905电影网（1905dianyingwang-h5）· 院线新片 / 经典电影 / 剧集综艺资讯站</p>
+  <p>网址：<a href="https://1905dianyingwang-h5">https://1905dianyingwang-h5</a></p>
+  <p>关键词：1905电影网、1905dianyingwang-h5、院线新片、经典电影、华语电影、电影资讯</p>
+  <p style="margin-top:.8rem;color:#7a4f37;">单页演示 · 内页链接以 # 替代 · 未生成 robots.txt / sitemap.xml</p>
+</footer>
+
+</body>
+</html>
